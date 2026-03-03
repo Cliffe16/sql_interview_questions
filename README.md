@@ -17,6 +17,80 @@ Remember to think critically, write clean queries, and collaborate with your pee
 
 ---
 
+Linking records across several datasets is important when dealing with health data at the Commission.  
+
+Sometimes patient information must be matched approximately using shared attributes such as:
+
+- Age  
+- Sex  
+- Birth Date  
+- Race/Ethnicity  
+- ZIP Code  
+
+Suppose vaccination information was split among **three tables**, each using different patient IDs and with **no direct mapping between them**.
+
+---
+
+## 🏥 Vaccination Clinic 1  
+**Table Name:** `clinic1_data`
+
+| PatientID | PatientAge | PatientSex | RACE_ETH | PatientZIP | VaccineType | VacsDate |
+|------------|------------|------------|-----------|------------|-------------|------------|
+| 20182749 | 28 | F | WHITE | 02118 | 3 | 01032024 |
+| 22837162 | 56 | M | BLACK | 02119 | 4 | 01032024 |
+| 22832861 | 58 | M | BLACK | 02110 | 4 | 01032024 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+---
+
+## 🏥 Vaccination Clinic 2  
+**Table Name:** `clinic2_data`
+
+| PtID | AGE | PTSEX | RACETHCODE | ZIPCODE | VaccClass | DATE_OF_VA |
+|------|-----|--------|------------|----------|------------|-------------|
+| 9847271 | 28 | F | WHITE | 02118 | 2 | 16122024 |
+| 6289398 | 56 | M | BLACK | 02119 | 2 | 16122024 |
+| 2638928 | 58 | M | BLACK | 02110 | 3 | 16122024 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+---
+
+## 🏥 Vaccination Clinic 3  
+**Table Name:** `clinic3_data`
+
+| PatID | AGE | PTSEX | RACETHCODE | ZIPCODE | VaccClass | DATE_OF_VA |
+|--------|-----|--------|------------|----------|------------|-------------|
+| A83719DH | 28 | F | WHITE | 02118 | 2 | 24112023 |
+| BIBDSJFQ | 56 | M | BLACK | 02119 | 2 | 24112023 |
+| FXV9281X | 58 | M | BLACK | 02110 | 3 | 24112023 |
+| ... | ... | ... | ... | ... | ... | ... |
+
+---
+
+## 🧩 Your Task
+
+Since the patient identifiers differ across all three datasets, construct a SQL query that:
+
+- Matches patients approximately using:
+  - Age  
+  - Sex  
+  - Race/Ethnicity  
+  - ZIP Code  
+- Merges vaccination data across all clinics
+- Returns a unified vaccination history
+- Includes:
+  - `PatientID` (from `clinic1_data`)
+  - `PatientAge`
+  - `PatientSex`
+  - `PatientZIP`
+  - `VaccineType`
+  - `VaccineDate`
+
+You may use any SQL dialect (PostgreSQL, MySQL, MSSQL, etc.) and make reasonable assumptions where necessary.
+
+---
+
+
 ##  Sample Question 1
 
 Using the 3 tables:
